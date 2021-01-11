@@ -1,0 +1,147 @@
+:root{
+  --button-background:#8fa1d1;
+  --button-color: #2b3c68;
+  --container-background: #153b9e;
+  --container-border: #41413f;
+  --outer-background: #aaaaaa;
+  --outer-border: #666865;
+  --activate-color: #01a041;
+  --pipe-color: #535b65;
+  --pipe-dark-color: #1b2033;
+}
+
+@font-face{
+  font-family: 'Arial';
+  src: url('/assets/fonts/arial.ttf');
+}
+
+.pipe{
+  position: absolute;
+  z-index: -1;
+  background-color: var(--pipe-color);
+}
+
+#bottom-pipe-body{
+  height: calc(100vh - 284px);
+  bottom: calc(-100vh + 272px);
+  width: 50px;
+}
+
+#bottom-pipe-head{
+  top: 0;
+  right: -25px;
+  width: 100px;
+  border-top: 12px solid var(--pipe-dark-color);
+}
+
+body{
+  background-image: url('/assets/images/stars.png');
+  background-size: 300px 200px;
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outer-container{
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  background-color: var(--outer-background);
+  border: 12px outset var(--outer-border);
+  width: 516px;
+}
+
+.game-container{
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  grid-template-rows: 100px 100px;
+  background-color: var(--container-background);
+  border: 6px solid var(--container-border);
+  z-index: 1;
+  border-radius: 4px;
+  padding-bottom: 8px;
+  padding-right: 8px;
+  width: 500px;
+}
+
+.panel-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  margin-top: 8px;
+  margin-left: 8px;
+  border-radius: 4px;
+  background-color: var(--button-background);
+  color: var(--button-color)
+}
+
+.panel-button:hover{
+  background-color: aquamarine;
+}
+
+.panel-button.active{
+  background-color: var(--activate-color);
+}
+
+.lost-animation{
+  background-color: red;
+}
+
+.complete-text{
+  position: absolute;
+  color: white;
+  text-align: center;
+  margin: 0;
+  z-index: 10;
+  animation: slide-in 250ms forwards;
+  text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 1px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000;
+  font-family: 'Arial', sans-serif;
+  font-weight: normal;
+}
+
+#crewmate{
+  position: absolute;
+  height: 50px;
+  animation: throw 5s infinite linear, rotate 5s infinite linear;
+  z-index: -1;
+}
+
+@keyframes slide-in{
+  from{
+    top: 100vh;
+  }
+
+  to{
+    top: calc(50% - 40px);
+  }
+}
+
+@keyframes throw{
+  0%{
+    left: -200px;
+  }
+
+  10%{
+    left: 100px;
+  }
+
+  100%{
+    left: 101vw;
+  }
+}
+
+@keyframes rotate{
+  from{
+    transform: rotate(0);
+  }
+
+  to{
+    transform: rotate(360deg);
+  }
+}
