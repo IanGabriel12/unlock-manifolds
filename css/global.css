@@ -55,11 +55,8 @@ body{
   width: 516px;
 }
 
-.game-container{
+.panel-container{
   margin: auto;
-  display: grid;
-  grid-template-columns: repeat(5, 100px);
-  grid-template-rows: 100px 100px;
   background-color: var(--container-background);
   border: 6px solid var(--container-border);
   z-index: 1;
@@ -67,9 +64,34 @@ body{
   padding-bottom: 8px;
   padding-right: 8px;
   width: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-container{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  grid-template-rows: 100px 100px;
+}
+
+.glass{
+  position: absolute;
+  height: 100%;
+  width: 50px;
+  background-color: white;
+  opacity: 0.2;
+  z-index: 1;
+  transform: skew(-50deg);
+}
+
+.glass:nth-child(2){
+  left: 300px;
 }
 
 .panel-button{
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,6 +105,14 @@ body{
 
 .panel-button:hover{
   background-color: aquamarine;
+}
+
+.panel-button-box{
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  position: absolute;
+  z-index: 10;
 }
 
 .panel-button.active{
@@ -108,7 +138,7 @@ body{
 #crewmate{
   position: absolute;
   height: 50px;
-  animation: throw 5s infinite linear, rotate 5s infinite linear;
+  animation: throw 7s infinite linear, rotate 7s infinite linear;
   z-index: -1;
 }
 

@@ -4,15 +4,15 @@ var unlockManifolds = {
     complete: 'complete.wav',
     fail: 'fail.wav',
 
-    loadAudios(){
+    async loadAudios(){
       const path = './audio/';
       this.click = new Audio(path + this.click)
       this.complete = new Audio(path + this.complete)
       this.fail = new Audio(path + this.fail);
 
-      this.click.load();
-      this.complete.load();
-      this.fail.load();
+      await this.click.load();
+      await this.complete.load();
+      await this.fail.load();
     },
 
     playAudio(audioName){
@@ -28,9 +28,12 @@ var unlockManifolds = {
     loadPanelButtons(){
       for(let i=1; i<=10; i++){
         let panelButton = document.createElement('div');
+        let panelButtonBox = document.createElement('div');
         let panelButtonNumber = document.createTextNode(i);
         panelButton.classList.add('panel-button');
+        panelButtonBox.classList.add('panel-button-box');
         panelButton.appendChild(panelButtonNumber);
+        panelButton.appendChild(panelButtonBox);
         this.panelButtons.push(panelButton);
       }
     },
@@ -138,6 +141,7 @@ var unlockManifolds = {
   }
 }
 
-unlockManifolds.audio.loadAudios();
-unlockManifolds.interface.loadPanelButtons();
-unlockManifolds.game.startGame();
+unlockManifolds.audio.loadAudios().then(() => {
+  unlockManifolds.interface.loadPanelButtons();
+  unlockManifolds.game.startGame();
+});
