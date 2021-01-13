@@ -118,7 +118,6 @@ var unlockManifolds = {
     maxNumber: 10,
 
     handleButtonClick(buttonNumber){
-      console.log('User has clicked: ', buttonNumber)
       if(buttonNumber == this.nextNumber){
         unlockManifolds.audio.playAudio('click');
         unlockManifolds.interface.activateButton(buttonNumber);
